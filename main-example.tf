@@ -1,5 +1,5 @@
 variable "region" {
-  default = "us-gov-west-1"
+  default = "us-west-1"
 }
 
 variable "tenant_role_arn" {
@@ -18,13 +18,13 @@ provider "aws" {
   }
 }
 
-// provider "aws" {
-//   alias = "central"
-//   region  = "${var.region}"
-//   assume_role {
-//     role_arn     = "${var.central_role_arn}"
-//   }
-// }
+provider "aws" {
+  alias = "central"
+  region  = var.region
+  assume_role {
+    role_arn     = var.central_role_arn
+  }
+}
 
 module "vpc-tenant" {
   source = "./modules/vpc-tenant"
