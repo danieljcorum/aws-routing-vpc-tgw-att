@@ -1,5 +1,5 @@
 variable "region" {
-  default = "us-west-1"
+  default = "us-east-1"
 }
 
 variable "tenant_role_arn" {
@@ -51,4 +51,13 @@ module "vpc-tenant" {
   instance_tenancy = "default"
   enable_dns_hostnames = "true"
   enable_dns_support = "true"
+}
+
+module "tgw-share" {
+  source = "./modules/tgw-share"
+  providers = {
+    aws.central = aws.central
+    aws.tenant = aws.tenant
+  }
+  tgw_arn = "enter arn here"
 }

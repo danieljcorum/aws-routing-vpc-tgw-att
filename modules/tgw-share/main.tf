@@ -1,3 +1,12 @@
+provider "aws" {
+  alias = "central"
+}
+
+
+provider "aws" {
+  alias = "tenant"
+}
+
 data "aws_caller_identity" "tenant" {
   provider = aws.tenant
 }
@@ -27,6 +36,6 @@ resource "aws_ram_principal_association" "tgw" {
 }
 
 resource "aws_ram_resource_share_accepter" "receiver_accept" {
-  provider = aws.tgw_tenant
+  provider = aws.tenant
   share_arn = aws_ram_principal_association.tgw.resource_share_arn
 }
