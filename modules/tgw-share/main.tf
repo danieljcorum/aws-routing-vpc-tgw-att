@@ -2,7 +2,6 @@ provider "aws" {
   alias = "central"
 }
 
-
 provider "aws" {
   alias = "tenant"
 }

@@ -30,7 +30,7 @@ resource "aws_subnet" "subnets" {
 
 resource "aws_route_table" "tenant-rt" {
   vpc_id = aws_vpc.vpc.id
-tags = {
+  tags = {
     Name = "${var.environment}-tenant-rt"
   }
 }

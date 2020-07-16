@@ -1,6 +1,7 @@
 variable "region" {
   default = "us-gov-west-1"
 }
+
 variable "environment" {
   description = "prod, dev, stage, etc"
   default = "prod"
@@ -36,4 +37,8 @@ variable "enable_dns_hostnames" {
 variable "enable_dns_support" {
   description = "enable/disable aws provided DNS server for vpc"
   default = "true"
+}
+
+output "vpc_id" {
+  value = aws_vpc.vpc.id
 }

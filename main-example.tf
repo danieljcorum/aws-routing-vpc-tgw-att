@@ -31,7 +31,6 @@ module "vpc-tenant" {
    providers = {
       aws = aws.tenant
   }
-  region = var.region
   environment = "test"
   map_public_ip_on_launch = "false"
   cidr_one = ""
@@ -42,7 +41,7 @@ module "vpc-tenant" {
       "az" = ""
       "name" = ""
     },
-    subnetTwo = {
+    "subnetTwo" = {
       "cidr" = ""
       "az" = ""
       "name" = ""
@@ -60,4 +59,25 @@ module "tgw-share" {
     aws.tenant = aws.tenant
   }
   tgw_arn = "enter arn here"
+}
+
+module "tgw-att-route" {
+  source = "./modules/tgw-att-route"
+  providers = {
+    aws.central = aws.central
+    aws.tenant = aws.tenant
+  }
+  tgw_id = "enter id here"
+  subnet_vpc_map = {
+    "vpcOne" = {
+      "cidrArray" = []
+      "vpc" = ""
+      "name" = ""
+    },
+    "vpcTwo" = {
+      "cidrArray" = []
+      "vpc" = ""
+      "name" = ""
+    }
+  }
 }
